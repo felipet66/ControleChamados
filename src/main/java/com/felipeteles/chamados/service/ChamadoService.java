@@ -16,7 +16,7 @@ public class ChamadoService {
 	@Autowired
 	private ChamadoRepository repo;
 	
-	public Chamado buscar(Integer id) throws ObjectNotFoundException {
+	public Chamado find(Integer id) throws ObjectNotFoundException {
 		Optional<Chamado> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Chamado.class.getName()));
@@ -24,6 +24,10 @@ public class ChamadoService {
 	
 	public Chamado insert(Chamado obj) {
 		obj.setId(null);
+		return repo.save(obj);
+	}
+	
+	public Chamado update(Chamado obj) {
 		return repo.save(obj);
 	}
 }
