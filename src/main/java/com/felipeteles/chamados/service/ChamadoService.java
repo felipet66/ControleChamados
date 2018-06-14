@@ -21,4 +21,9 @@ public class ChamadoService {
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Chamado.class.getName()));
 	}
+	
+	public Chamado insert(Chamado obj) {
+		obj.setId(null);
+		return repo.save(obj);
+	}
 }
